@@ -17,11 +17,9 @@ import contextlib
 import importlib.resources
 import json
 import logging
-from collections import deque
-from collections.abc import Iterable, Iterator
+from collections.abc import Iterator
 from pathlib import Path
-from pprint import pformat
-from typing import Any, Generic, TypeVar
+from typing import Any
 
 import datasets
 import numpy as np
