@@ -45,7 +45,6 @@ from lerobot.utils.constants import HF_LEROBOT_HUB_CACHE
 logger = logging.getLogger(__name__)
 
 
-
 class LeRobotDataset(torch.utils.data.Dataset):
     def __init__(
         self,
@@ -238,7 +237,10 @@ class LeRobotDataset(torch.utils.data.Dataset):
 
         # Load metadata (sets self.root once from the resolved metadata root)
         self.meta = LeRobotDatasetMetadata(
-            self.repo_id, self._requested_root, self.revision, force_cache_sync=force_cache_sync,
+            self.repo_id,
+            self._requested_root,
+            self.revision,
+            force_cache_sync=force_cache_sync,
             s3_endpoint_url=s3_endpoint_url,
         )
         self.root = self.meta.root

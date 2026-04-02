@@ -1,6 +1,6 @@
 from __future__ import annotations  # just for linters compatibility
-from lerobot.datasets.lerobot_dataset import LeRobotDataset, LeRobotDatasetMetadata
 
+from lerobot.datasets.lerobot_dataset import LeRobotDataset, LeRobotDatasetMetadata
 
 REPO_ID = "airoa-moma"
 REVISION = "main"
@@ -54,6 +54,4 @@ if __name__ == "__main__":
     test_lerobot_dataset_item(
         repo_id=REPO_ID, root=S3_PATH, s3_endpoint_url=S3_ENDPOINT_URL, episodes=EPISODES
     )
-    test_lerobot_dataset_item(
-        repo_id=REPO_ID, root=S3_PATH, s3_endpoint_url=S3_ENDPOINT_URL
-    )
+    test_lerobot_dataset_item(repo_id=REPO_ID, root=S3_PATH, s3_endpoint_url=S3_ENDPOINT_URL)
