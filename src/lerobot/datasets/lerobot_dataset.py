@@ -233,12 +233,13 @@ class LeRobotDataset(torch.utils.data.Dataset):
         self._vcodec = resolve_vcodec(vcodec)
         self._encoder_threads = encoder_threads
 
-        if self._requested_root is not None:
+        if self._requested_root is not None and not str(self._requested_root).startswith("s3://"):
             self._requested_root.mkdir(exist_ok=True, parents=True)
 
         # Load metadata (sets self.root once from the resolved metadata root)
         self.meta = LeRobotDatasetMetadata(
-            self.repo_id, self._requested_root, self.revision, force_cache_sync=force_cache_sync
+            self.repo_id, self._requested_root, self.revision, force_cache_sync=force_cache_sync,
+            s3_endpoint_url=s3_endpoint_url,
         )
         self.root = self.meta.root
         self.revision = self.meta.revision

@@ -147,7 +147,9 @@ class DatasetReader:
         if not requested_episodes.issubset(available_episodes):
             return False
 
-        if len(self._meta.video_keys) > 0:
+        # For S3 paths skip per-file HEAD requests — data is authoritative on S3
+        # and N×M individual HeadObject calls are expensive.
+        if not str(self.root).startswith("s3://") and len(self._meta.video_keys) > 0:
             for ep_idx in requested_episodes:
                 for vid_key in self._meta.video_keys:
                     video_path = self.root / self._meta.get_video_file_path(ep_idx, vid_key)
