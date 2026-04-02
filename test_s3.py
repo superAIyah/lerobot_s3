@@ -2,7 +2,7 @@ from __future__ import annotations  # just for linters compatibility
 
 from lerobot.datasets.lerobot_dataset import LeRobotDataset, LeRobotDatasetMetadata
 
-REPO_ID = "airoa-org/airoa-moma"
+REPO_ID = "airoa-moma"
 REVISION = "main"
 S3_ENDPOINT_URL = "https://obs.ru-moscow-1.hc.sbercloud.ru"
 S3_PATH = "s3://gigaeye-data/visiondata/robotics/raw_robo_datasets/airoa-moma"
@@ -33,7 +33,7 @@ def test_lerobot_dataset_item(
     s3_endpoint_url: str | None = None,
     episodes: list[int] | None = None,
 ):
-    dataset = LeRobotDataset(repo_id=REPO_ID, revision="main", episodes=[0, 10, 11, 23])
+    dataset = LeRobotDataset(repo_id, root, revision=revision, s3_endpoint_url=s3_endpoint_url)
     episode_index = 0
     from_idx = dataset.meta.episodes["dataset_from_index"][episode_index]
     to_idx = dataset.meta.episodes["dataset_to_index"][episode_index]
@@ -48,14 +48,10 @@ def test_lerobot_dataset_item(
 
 
 if __name__ == "__main__":
-    # offline path
-    test_lerobot_dataset_metadata_initialization(repo_id=REPO_ID)
-    test_lerobot_dataset_item(repo_id=REPO_ID, episodes=EPISODES)
-
-    # online path
     test_lerobot_dataset_metadata_initialization(
         repo_id=REPO_ID, root=S3_PATH, s3_endpoint_url=S3_ENDPOINT_URL
     )
     test_lerobot_dataset_item(
         repo_id=REPO_ID, root=S3_PATH, s3_endpoint_url=S3_ENDPOINT_URL, episodes=EPISODES
     )
+    test_lerobot_dataset_item(repo_id=REPO_ID, root=S3_PATH, s3_endpoint_url=S3_ENDPOINT_URL)

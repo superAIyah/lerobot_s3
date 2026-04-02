@@ -17,8 +17,6 @@ import io
 import json
 from typing import Any
 
-from upath import UPath as Path
-
 import datasets
 import numpy as np
 import pandas
@@ -30,6 +28,7 @@ from datasets import Dataset
 from datasets.table import embed_table_storage
 from PIL import Image as PILImage
 from torchvision import transforms
+from upath import UPath as Path
 
 from lerobot.datasets.utils import (
     DEFAULT_DATA_FILE_SIZE_IN_MB,

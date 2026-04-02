@@ -6,9 +6,7 @@ from dotenv import load_dotenv
 
 
 def monkey_patch_open(key_id: str, secret: str, endpoint_url: str, max_pool_connections: int = 10):
-    """
-    Monkey patch the open function to use the s3 client.
-    """
+    """Monkey-patch ``builtins.open`` to transparently handle ``s3://`` paths."""
 
     load_dotenv()
 

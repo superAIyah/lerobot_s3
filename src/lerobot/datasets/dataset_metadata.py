@@ -16,15 +16,14 @@
 import contextlib
 import os
 
-from dotenv import load_dotenv
-from upath import UPath as Path
-
 import numpy as np
 import packaging.version
 import pandas as pd
 import pyarrow as pa
 import pyarrow.parquet as pq
+from dotenv import load_dotenv
 from huggingface_hub import snapshot_download
+from upath import UPath as Path
 
 from lerobot.datasets.compute_stats import aggregate_stats
 from lerobot.datasets.feature_utils import _validate_feature_names, create_empty_dataset_info
@@ -40,6 +39,7 @@ from lerobot.datasets.io_utils import (
     write_stats,
     write_tasks,
 )
+from lerobot.datasets.s3_utils import monkey_patch_open
 from lerobot.datasets.utils import (
     DEFAULT_EPISODES_PATH,
     DEFAULT_FEATURES,
@@ -51,7 +51,6 @@ from lerobot.datasets.utils import (
     is_valid_version,
     update_chunk_file_indices,
 )
-from lerobot.datasets.s3_utils import monkey_patch_open
 from lerobot.datasets.video_utils import get_video_info
 from lerobot.utils.constants import HF_LEROBOT_HOME, HF_LEROBOT_HUB_CACHE
 
